@@ -153,9 +153,9 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 .case-grid .case-card.wide { grid-column: span 8; }
 .case-grid.is-even .case-card, .case-grid.is-even .case-card.wide { grid-column: auto; }
 .case-img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--color-sand); }
-.case-card.wide .case-img { aspect-ratio: auto; height: 100%; min-height: 100%; }
 .case-grid:not(.is-even) .case-card.wide { display: flex; flex-direction: column; }
-.case-grid:not(.is-even) .case-card.wide .case-img { flex: 1; }
+.case-grid:not(.is-even) .case-card.wide .case-img { flex: 1 1 auto; min-height: 0; aspect-ratio: auto; }
+.case-grid:not(.is-even) .case-card.wide .case-img img { position: absolute; inset: 0; }
 .case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
 .case-card:hover .case-img img { transform: scale(1.04); }
 .case-badge { position: absolute; top: 16px; left: 16px; font-size: 12px; font-weight: 500; padding: 6px 12px; background: rgba(255,255,255,.92); color: var(--color-ink); }
@@ -458,7 +458,7 @@ h1, h2, h3, h4, p { word-break: keep-all; }
     .case-grid, .case-grid.is-even { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
     .case-card, .case-grid .case-card.wide { grid-column: auto; }
     .case-grid .case-card.wide { grid-column: 1 / -1; }
-    .case-card.wide .case-img { aspect-ratio: 4 / 3; height: auto; }
+    .case-grid:not(.is-even) .case-card.wide .case-img { aspect-ratio: 4 / 3; flex: none; }
     .case-info h3 { font-size: 17px; }
 
     .product-rail { grid-auto-columns: 62%; }
