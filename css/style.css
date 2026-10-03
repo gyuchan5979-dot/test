@@ -513,3 +513,9 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 .review-card .sample-tag { position: absolute; top: 18px; right: 18px; font-size: 11px; letter-spacing: .08em; padding: 4px 10px; border: 1px dashed var(--color-stone); color: var(--color-stone); }
 .review-card.is-sample .quote { color: var(--color-muted); }
 .review-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+.review-card .quote { font-size: 17px; }
+@media (max-width: 900px) {
+    /* 모바일: 후기는 옆으로 넘겨 보기 */
+    .review-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+    .review-card { scroll-snap-align: start; }
+}
