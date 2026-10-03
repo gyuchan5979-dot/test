@@ -28,8 +28,9 @@ const SITE_CONFIG = {
     // 🏢 회사 정보
     companyName: "결앤빛 커튼&블라인드",
     companyNameEn: "GYEOL & BIT",
+    legalName: "드리움 커튼&블라인드",   // 사업자등록증의 상호 (드리움과 같은 사업자로 운영)
     ceo: "조규찬",
-    bizNumber: "",              // 사업자등록번호 (입력하면 푸터에 표시)
+    bizNumber: "",              // 사업자등록번호 (예: "123-45-67890", 입력하면 푸터에 표시)
     address: "서울 · 경기 · 인천 방문 시공",
 
     // ⏰ 영업 시간
