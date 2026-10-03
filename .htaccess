@@ -18,12 +18,13 @@ RewriteRule ^ https://gyeolnbit.co.kr%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # 브라우저 캐시 (사진·CSS·JS 재방문 시 빠르게)
+# 사진을 같은 파일명으로 바꾸면 하루 안에 모든 방문자에게 반영됩니다.
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType image/jpeg "access plus 30 days"
-    ExpiresByType image/png "access plus 30 days"
-    ExpiresByType image/svg+xml "access plus 30 days"
-    ExpiresByType text/css "access plus 7 days"
-    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 1 day"
+    ExpiresByType image/png "access plus 1 day"
+    ExpiresByType image/svg+xml "access plus 1 day"
+    ExpiresByType text/css "access plus 1 hour"
+    ExpiresByType application/javascript "access plus 1 hour"
     ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
