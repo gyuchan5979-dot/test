@@ -8,7 +8,7 @@
 ```
 /index.html              메인
 /gallery.html            시공사례 목록
-/case-01.html ~ 09       시공사례 상세 (사례 1개 = 페이지 1개 → 검색 노출용)
+/case-01.html ~ 35       시공사례 상세 (사례 1개 = 페이지 1개 → 검색 노출용)
 /products.html           제품 안내 (#linen #chiffon #blackout #combi #wood #honeycomb #roll #motor)
 /areas.html              시공 지역 목록
 /area-xxx.html           지역 페이지 (강남·서초·송파·마포·분당·판교·일산·송도)
@@ -46,7 +46,7 @@
 |---|---|---|
 | `images/hero/` | hero-01~03.jpg (메인 슬라이드) | 1920×1080 |
 | `images/hero/` | hero-gallery / products / areas / blog / about / faq / inquiry / cta .jpg | 1920×1080 |
-| `images/cases/` | case-01.jpg (대표), case-01-2.jpg … case-09 | 1600×1200 |
+| `images/cases/` | case-01.jpg (대표), case-01-2.jpg … case-35 | 1600×1200 |
 | `images/products/` | linen, chiffon, blackout, combi, wood, honeycomb, roll, motor .jpg | 900×1200 (세로) |
 | `images/before-after/` | before.jpg, after.jpg (**같은 위치·구도**에서 촬영) | 1600×900 |
 | `images/about/` | about-01.jpg, about-02.jpg | 1000×1250 (세로) |
@@ -55,7 +55,7 @@
 
 ## ⚠️ 예시 문구 교체
 
-- **시공사례 9개(case-01~09)** 는 실제 시공 사진으로 채웠고, 본문은 사진에서 보이는 내용만 적었습니다.
+- **시공사례 35개(case-01~35)** 는 실제 시공 사진으로 채웠고, 본문은 사진에서 보이는 내용만 적었습니다.
   지역 · 평수 · 고객 요청사항을 알면 각 `case-0N.html` 의 공간 정보와 본문에 추가하세요. (검색 노출에 큰 도움이 됩니다)
 - 사진 속 간판 · 호텔 이름은 흐리게 처리했고, 사진 파일의 촬영 위치 정보(GPS)는 지웠습니다.
 - **고객 후기**: `index.html` 후기 영역의 `review-card`를 복사해 추가합니다. 6개가 넘으면 오래된 것부터 지워 6~9개를 유지하는 게 보기 좋아요.
