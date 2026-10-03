@@ -268,8 +268,8 @@
     </section>
 
     <!-- ===== 고객 후기 =====
-         실제 후기가 모이면 아래 review-empty 블록을 지우고 review-card 를 추가하세요.
-         <div class="review-card"><p class="quote">"후기 내용"</p><p class="meta">김○○ 고객님 · 지역 · 제품</p></div>
+         review-card 하나가 후기 하나입니다. 복사해서 늘리거나 지우면 됩니다.
+         실제 후기만 올려 주세요 (지어낸 후기는 표시광고법 위반이 될 수 있어요).
     -->
     <section class="section bg-sand">
         <div class="container">
@@ -278,12 +278,32 @@
                 <h2 class="section-title">고객 후기</h2>
                 <p class="section-sub">시공받으신 고객님들이 직접 남겨주신 후기입니다.</p>
             </div>
-            <div class="review-empty reveal">
-                <p>결앤빛의 실제 고객 후기는 네이버와 카카오톡 채널에서 확인하실 수 있어요.</p>
-                <div class="btn-row">
-                    <a href="#" class="btn btn-outline" data-link="naver">네이버 리뷰 보기</a>
-                    <a href="#" class="btn btn-kakao">카카오톡으로 문의하기</a>
+            <div class="review-grid reveal">
+                <!-- 예시 카드: 실제 후기로 내용을 바꾸고 <span class="sample-tag">예시</span> 줄을 지우세요 -->
+                <div class="review-card is-sample">
+                    <span class="sample-tag">예시</span>
+                    <p class="stars" aria-label="별점 5점">★★★★★</p>
+                    <p class="quote">"실제 고객님께 받은 후기가 들어갈 자리입니다. 카카오톡이나 네이버에 남겨주신 후기를 동의를 받아 옮겨 주세요."</p>
+                    <p class="meta">고객명(김○○) · 지역 · 시공 제품</p>
                 </div>
+                <!-- 예시 카드: 실제 후기로 내용을 바꾸고 <span class="sample-tag">예시</span> 줄을 지우세요 -->
+                <div class="review-card is-sample">
+                    <span class="sample-tag">예시</span>
+                    <p class="stars" aria-label="별점 5점">★★★★★</p>
+                    <p class="quote">"후기 한두 문장이 가장 잘 읽힙니다. 시공 공간과 만족한 점이 드러나는 문장을 골라 넣어 주세요."</p>
+                    <p class="meta">고객명(김○○) · 지역 · 시공 제품</p>
+                </div>
+                <!-- 예시 카드: 실제 후기로 내용을 바꾸고 <span class="sample-tag">예시</span> 줄을 지우세요 -->
+                <div class="review-card is-sample">
+                    <span class="sample-tag">예시</span>
+                    <p class="stars" aria-label="별점 5점">★★★★★</p>
+                    <p class="quote">"후기와 함께 해당 시공사례 페이지로 연결하면 신뢰도가 더 높아집니다."</p>
+                    <p class="meta">고객명(김○○) · 지역 · 시공 제품</p>
+                </div>
+            </div>
+            <div class="review-links reveal">
+                <a href="#" class="btn btn-outline" data-link="naver">네이버 리뷰 전체 보기</a>
+                <a href="#" class="btn btn-kakao">카카오톡으로 문의하기</a>
             </div>
         </div>
     </section>

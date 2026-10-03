@@ -506,3 +506,10 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 /* 지역 페이지: 2단 글 영역 안의 본문 */
 .split-text.prose h2 { margin-top: 0; }
 .split-text.prose h3 { margin-top: 32px; }
+
+/* 후기 카드: 별점 · 예시 표시 */
+.review-card { position: relative; }
+.review-card .stars { color: var(--color-stone); letter-spacing: .15em; font-size: 14px; margin-bottom: 18px; }
+.review-card .sample-tag { position: absolute; top: 18px; right: 18px; font-size: 11px; letter-spacing: .08em; padding: 4px 10px; border: 1px dashed var(--color-stone); color: var(--color-stone); }
+.review-card.is-sample .quote { color: var(--color-muted); }
+.review-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
