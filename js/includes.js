@@ -24,25 +24,25 @@ var NAV_MENU = [
 /* ✅ 메인 히어로 슬라이드 (사진만 바꾸려면 같은 파일명으로 FTP 업로드)
       caption: 사진 왼쪽 아래에 작게 표시되는 사례 설명 */
 var HOME_HERO_SLIDES = [
-  { img: "images/hero/hero-01.jpg?v=202610031654", caption: "거실 · 겉커튼 + 쉬폰", alt: "거실 베이지 겉커튼과 쉬폰 실제 시공 사진" },
-  { img: "images/hero/hero-02.jpg?v=202610031654", caption: "매장 · 쉬폰 커튼",     alt: "벽돌 벽 매장 높은 창 쉬폰 커튼 실제 시공 사진" },
-  { img: "images/hero/hero-03.jpg?v=202610031654", caption: "거실 · 쉬폰 커튼",     alt: "거실 화이트 쉬폰 커튼 실제 시공 사진" }
+  { img: "images/hero/hero-01.jpg?v=202610031701", caption: "거실 · 겉커튼 + 쉬폰", alt: "거실 베이지 겉커튼과 쉬폰 실제 시공 사진" },
+  { img: "images/hero/hero-02.jpg?v=202610031701", caption: "매장 · 쉬폰 커튼",     alt: "벽돌 벽 매장 높은 창 쉬폰 커튼 실제 시공 사진" },
+  { img: "images/hero/hero-03.jpg?v=202610031701", caption: "거실 · 쉬폰 커튼",     alt: "거실 화이트 쉬폰 커튼 실제 시공 사진" }
 ];
 
 /* ✅ 서브 페이지 히어로 (HTML의 data-hero="키" 와 연결)
       img: 배경 사진 / eyebrow: 제목 위 영문 소제목 */
 var PAGE_HEROES = {
-  gallery:  { img: "images/hero/hero-gallery.jpg?v=202610031654",  eyebrow: "WORKS" },
-  "case":   { img: "images/hero/hero-gallery.jpg?v=202610031654",  eyebrow: "CASE STUDY",  parent: { name: "시공사례", href: "gallery.html" } },
-  products: { img: "images/hero/hero-products.jpg?v=202610031654", eyebrow: "PRODUCTS" },
-  areas:    { img: "images/hero/hero-areas.jpg?v=202610031654",    eyebrow: "SERVICE AREA" },
-  area:     { img: "images/hero/hero-areas.jpg?v=202610031654",    eyebrow: "SERVICE AREA", parent: { name: "시공지역", href: "areas.html" } },
-  blog:     { img: "images/hero/hero-blog.jpg?v=202610031654",     eyebrow: "MAGAZINE" },
-  post:     { img: "images/hero/hero-blog.jpg?v=202610031654",     eyebrow: "MAGAZINE",    parent: { name: "매거진", href: "blog.html" } },
-  about:    { img: "images/hero/hero-about.jpg?v=202610031654",    eyebrow: "BRAND STORY" },
-  faq:      { img: "images/hero/hero-faq.jpg?v=202610031654",      eyebrow: "FAQ" },
-  inquiry:  { img: "images/hero/hero-inquiry.jpg?v=202610031654",  eyebrow: "CONTACT" },
-  thanks:   { img: "images/hero/hero-inquiry.jpg?v=202610031654",  eyebrow: "THANK YOU" }
+  gallery:  { img: "images/hero/hero-gallery.jpg?v=202610031701",  eyebrow: "WORKS" },
+  "case":   { img: "images/hero/hero-gallery.jpg?v=202610031701",  eyebrow: "CASE STUDY",  parent: { name: "시공사례", href: "gallery.html" } },
+  products: { img: "images/hero/hero-products.jpg?v=202610031701", eyebrow: "PRODUCTS" },
+  areas:    { img: "images/hero/hero-areas.jpg?v=202610031701",    eyebrow: "SERVICE AREA" },
+  area:     { img: "images/hero/hero-areas.jpg?v=202610031701",    eyebrow: "SERVICE AREA", parent: { name: "시공지역", href: "areas.html" } },
+  blog:     { img: "images/hero/hero-blog.jpg?v=202610031701",     eyebrow: "MAGAZINE" },
+  post:     { img: "images/hero/hero-blog.jpg?v=202610031701",     eyebrow: "MAGAZINE",    parent: { name: "매거진", href: "blog.html" } },
+  about:    { img: "images/hero/hero-about.jpg?v=202610031701",    eyebrow: "BRAND STORY" },
+  faq:      { img: "images/hero/hero-faq.jpg?v=202610031701",      eyebrow: "FAQ" },
+  inquiry:  { img: "images/hero/hero-inquiry.jpg?v=202610031701",  eyebrow: "CONTACT" },
+  thanks:   { img: "images/hero/hero-inquiry.jpg?v=202610031701",  eyebrow: "THANK YOU" }
 };
 
 /* ✅ 완성된 지역 페이지만 등록 */
@@ -51,19 +51,69 @@ var COMPLETED_AREAS = {
   "서초": "area-seocho.html",
   "송파": "area-songpa.html",
   "마포": "area-mapo.html",
+  "강동": "area-gangdong.html",
+  "강서": "area-gangseo.html",
+  "양천": "area-yangcheon.html",
+  "영등포": "area-yeongdeungpo.html",
+  "용산": "area-yongsan.html",
+  "성동": "area-seongdong.html",
+  "광진": "area-gwangjin.html",
+  "동작": "area-dongjak.html",
+  "관악": "area-gwanak.html",
+  "구로": "area-guro.html",
+  "금천": "area-geumcheon.html",
+  "동대문": "area-dongdaemun.html",
+  "중랑": "area-jungnang.html",
+  "성북": "area-seongbuk.html",
+  "강북": "area-gangbuk.html",
+  "도봉": "area-dobong.html",
+  "노원": "area-nowon.html",
+  "은평": "area-eunpyeong.html",
+  "서대문": "area-seodaemun.html",
+  "종로": "area-jongno.html",
+  "중구": "area-junggu.html",
   "분당": "area-bundang.html",
   "판교": "area-pangyo.html",
   "일산": "area-ilsan.html",
-  "송도": "area-songdo.html"
+  "수원": "area-suwon.html",
+  "용인": "area-yongin.html",
+  "동탄": "area-dongtan.html",
+  "화성": "area-hwaseong.html",
+  "평촌": "area-pyeongchon.html",
+  "안양": "area-anyang.html",
+  "부천": "area-bucheon.html",
+  "광명": "area-gwangmyeong.html",
+  "시흥": "area-siheung.html",
+  "안산": "area-ansan.html",
+  "과천": "area-gwacheon.html",
+  "산본": "area-sanbon.html",
+  "의왕": "area-uiwang.html",
+  "하남": "area-hanam.html",
+  "위례": "area-wirye.html",
+  "남양주": "area-namyangju.html",
+  "구리": "area-guri.html",
+  "김포": "area-gimpo.html",
+  "파주": "area-paju.html",
+  "고양": "area-goyang.html",
+  "의정부": "area-uijeongbu.html",
+  "양주": "area-yangju.html",
+  "광주": "area-gwangju.html",
+  "오산": "area-osan.html",
+  "평택": "area-pyeongtaek.html",
+  "이천": "area-icheon.html",
+  "송도": "area-songdo.html",
+  "남동": "area-namdong.html",
+  "부평": "area-bupyeong.html",
+  "계양": "area-gyeyang.html",
+  "인천서구": "area-incheon-seogu.html",
+  "미추홀": "area-michuhol.html",
+  "영종": "area-yeongjong.html",
+  "연수": "area-yeonsu.html"
 };
 
 /* 푸터에 노출할 전체 지역 순서 (서울 → 경기 → 인천) */
 var ALL_AREAS = [
-  "강남","서초","송파","강동","강서","양천","영등포","마포","용산","성동",
-  "광진","동작","관악","구로","금천","동대문","중랑","성북","강북","도봉",
-  "노원","은평","서대문","종로","중구",
-  "분당","판교","일산","광명","부천","안양","과천","산본","하남","위례",
-  "송도","부평","인천서구","계양","남동"
+  "강남","서초","송파","마포","강동","강서","양천","영등포","용산","성동","광진","동작","관악","구로","금천","동대문","중랑","성북","강북","도봉","노원","은평","서대문","종로","중구","분당","판교","일산","수원","용인","동탄","화성","평촌","안양","부천","광명","시흥","안산","과천","산본","의왕","하남","위례","남양주","구리","김포","파주","고양","의정부","양주","광주","오산","평택","이천","송도","남동","부평","계양","인천서구","미추홀","영종","연수"
 ];
 
 /* ===================================================== */
@@ -134,7 +184,7 @@ var footerHTML = ''
 /* ===== 하단 상담 섹션 (푸터 위, <div id="site-cta"></div> 자리에 들어감) ===== */
 var ctaHTML = ''
 + '<section class="contact-cta" id="contact">'
-+ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610031654" alt="" aria-hidden="true" loading="lazy"></div>'
++ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610031701" alt="" aria-hidden="true" loading="lazy"></div>'
 + '  <div class="container">'
 + '    <div>'
 + '      <p class="section-tag" style="color:rgba(255,255,255,.6)">CONTACT</p>'

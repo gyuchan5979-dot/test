@@ -11,7 +11,7 @@
 /case-01.html ~ 35       시공사례 상세 (사례 1개 = 페이지 1개 → 검색 노출용)
 /products.html           제품 안내 (#linen #chiffon #blackout #combi #wood #honeycomb #roll #motor)
 /areas.html              시공 지역 목록
-/area-xxx.html           지역 페이지 (강남·서초·송파·마포·분당·판교·일산·송도)
+/area-xxx.html           지역 페이지 62개 (서울 25개 구 · 경기 · 인천)
 /blog.html, blog-N-xxx.html   매거진 (블로그)
 /about.html  /faq.html  /inquiry.html  /thanks.html
 /css/reset.css, style.css

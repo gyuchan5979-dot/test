@@ -529,3 +529,7 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 
 /* 사례 사진이 1장일 때 */
 .case-photos.is-single figure:first-child img { aspect-ratio: 4 / 3; }
+
+/* 지역 목록: 빈 칸이 회색으로 차지 않게 칸마다 테두리 */
+.area-index { gap: 0; background: none; border: 0; }
+.area-index a, .area-index span { border: 1px solid var(--color-line); margin: 0 -1px -1px 0; }
