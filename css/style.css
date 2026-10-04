@@ -173,7 +173,7 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 /* ============================================
    비포 & 애프터
    ============================================ */
-.ba-slider { --pos: 50%; position: relative; aspect-ratio: 16 / 9; overflow: hidden; user-select: none; background: #333; }
+.ba-slider { --pos: 50%; position: relative; aspect-ratio: 1440 / 1122; max-height: 78vh; margin: 0 auto; overflow: hidden; user-select: none; background: #333; cursor: ew-resize; touch-action: pan-y; }
 .ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .ba-after { clip-path: inset(0 0 0 var(--pos)); }
 .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--color-white); transform: translateX(-1px); pointer-events: none; }
@@ -181,7 +181,8 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 .ba-label { position: absolute; top: 24px; font-size: 12px; letter-spacing: .2em; color: var(--color-white); background: rgba(0,0,0,.45); padding: 7px 14px; }
 .ba-label.before { left: 24px; }
 .ba-label.after { right: 24px; }
-.ba-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.ba-range { position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; opacity: 0; margin: 0; pointer-events: none; }
+.ba-slider:focus-within .ba-handle::after { outline: 2px solid #fff; outline-offset: 3px; }
 .ba-caption { display: flex; justify-content: space-between; gap: 16px; margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.6); flex-wrap: wrap; }
 
 /* ============================================

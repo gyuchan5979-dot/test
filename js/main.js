@@ -43,12 +43,17 @@ if (slides.length > 1) {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) play();
 }
 
-// 비포 & 애프터 슬라이더
+// 비포 & 애프터 슬라이더 (마우스 드래그 · 터치 · 키보드)
 document.querySelectorAll('.ba-slider').forEach(slider => {
     const range = slider.querySelector('.ba-range');
-    const set = v => slider.style.setProperty('--pos', v + '%');
-    range.addEventListener('input', e => set(e.target.value));
-    set(range.value);
+    const set = v => { v = Math.max(0, Math.min(100, v)); slider.style.setProperty('--pos', v + '%'); range.value = v; };
+    const fromEvent = e => { const r = slider.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+    let dragging = false;
+    slider.addEventListener('pointerdown', e => { dragging = true; slider.setPointerCapture(e.pointerId); fromEvent(e); });
+    slider.addEventListener('pointermove', e => { if (dragging) fromEvent(e); });
+    ['pointerup', 'pointercancel'].forEach(t => slider.addEventListener(t, () => { dragging = false; }));
+    range.addEventListener('input', e => set(+e.target.value));   // 키보드(←→) 조작
+    set(+range.value);
 });
 
 // 시공사례 필터 (gallery.html)
