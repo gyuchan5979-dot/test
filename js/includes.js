@@ -24,25 +24,25 @@ var NAV_MENU = [
 /* ✅ 메인 히어로 슬라이드 (사진만 바꾸려면 같은 파일명으로 FTP 업로드)
       caption: 사진 왼쪽 아래에 작게 표시되는 사례 설명 */
 var HOME_HERO_SLIDES = [
-  { img: "images/hero/hero-01.jpg?v=202610031704", caption: "거실 · 겉커튼 + 쉬폰", alt: "거실 베이지 겉커튼과 쉬폰 실제 시공 사진" },
-  { img: "images/hero/hero-02.jpg?v=202610031704", caption: "매장 · 쉬폰 커튼",     alt: "벽돌 벽 매장 높은 창 쉬폰 커튼 실제 시공 사진" },
-  { img: "images/hero/hero-03.jpg?v=202610031704", caption: "거실 · 쉬폰 커튼",     alt: "거실 화이트 쉬폰 커튼 실제 시공 사진" }
+  { img: "images/hero/hero-01.jpg?v=202610041538", caption: "거실 · 겉커튼 + 쉬폰", alt: "거실 베이지 겉커튼과 쉬폰 실제 시공 사진" },
+  { img: "images/hero/hero-02.jpg?v=202610041538", caption: "매장 · 쉬폰 커튼",     alt: "벽돌 벽 매장 높은 창 쉬폰 커튼 실제 시공 사진" },
+  { img: "images/hero/hero-03.jpg?v=202610041538", caption: "거실 · 쉬폰 커튼",     alt: "거실 화이트 쉬폰 커튼 실제 시공 사진" }
 ];
 
 /* ✅ 서브 페이지 히어로 (HTML의 data-hero="키" 와 연결)
       img: 배경 사진 / eyebrow: 제목 위 영문 소제목 */
 var PAGE_HEROES = {
-  gallery:  { img: "images/hero/hero-gallery.jpg?v=202610031704",  eyebrow: "WORKS" },
-  "case":   { img: "images/hero/hero-gallery.jpg?v=202610031704",  eyebrow: "CASE STUDY",  parent: { name: "시공사례", href: "gallery.html" } },
-  products: { img: "images/hero/hero-products.jpg?v=202610031704", eyebrow: "PRODUCTS" },
-  areas:    { img: "images/hero/hero-areas.jpg?v=202610031704",    eyebrow: "SERVICE AREA" },
-  area:     { img: "images/hero/hero-areas.jpg?v=202610031704",    eyebrow: "SERVICE AREA", parent: { name: "시공지역", href: "areas.html" } },
-  blog:     { img: "images/hero/hero-blog.jpg?v=202610031704",     eyebrow: "MAGAZINE" },
-  post:     { img: "images/hero/hero-blog.jpg?v=202610031704",     eyebrow: "MAGAZINE",    parent: { name: "매거진", href: "blog.html" } },
-  about:    { img: "images/hero/hero-about.jpg?v=202610031704",    eyebrow: "BRAND STORY" },
-  faq:      { img: "images/hero/hero-faq.jpg?v=202610031704",      eyebrow: "FAQ" },
-  inquiry:  { img: "images/hero/hero-inquiry.jpg?v=202610031704",  eyebrow: "CONTACT" },
-  thanks:   { img: "images/hero/hero-inquiry.jpg?v=202610031704",  eyebrow: "THANK YOU" }
+  gallery:  { img: "images/hero/hero-gallery.jpg?v=202610041538",  eyebrow: "WORKS" },
+  "case":   { img: "images/hero/hero-gallery.jpg?v=202610041538",  eyebrow: "CASE STUDY",  parent: { name: "시공사례", href: "gallery.html" } },
+  products: { img: "images/hero/hero-products.jpg?v=202610041538", eyebrow: "PRODUCTS" },
+  areas:    { img: "images/hero/hero-areas.jpg?v=202610041538",    eyebrow: "SERVICE AREA" },
+  area:     { img: "images/hero/hero-areas.jpg?v=202610041538",    eyebrow: "SERVICE AREA", parent: { name: "시공지역", href: "areas.html" } },
+  blog:     { img: "images/hero/hero-blog.jpg?v=202610041538",     eyebrow: "MAGAZINE" },
+  post:     { img: "images/hero/hero-blog.jpg?v=202610041538",     eyebrow: "MAGAZINE",    parent: { name: "매거진", href: "blog.html" } },
+  about:    { img: "images/hero/hero-about.jpg?v=202610041538",    eyebrow: "BRAND STORY" },
+  faq:      { img: "images/hero/hero-faq.jpg?v=202610041538",      eyebrow: "FAQ" },
+  inquiry:  { img: "images/hero/hero-inquiry.jpg?v=202610041538",  eyebrow: "CONTACT" },
+  thanks:   { img: "images/hero/hero-inquiry.jpg?v=202610041538",  eyebrow: "THANK YOU" }
 };
 
 /* ✅ 완성된 지역 페이지만 등록 */
@@ -184,7 +184,7 @@ var footerHTML = ''
 /* ===== 하단 상담 섹션 (푸터 위, <div id="site-cta"></div> 자리에 들어감) ===== */
 var ctaHTML = ''
 + '<section class="contact-cta" id="contact">'
-+ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610031704" alt="" aria-hidden="true" loading="lazy"></div>'
++ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610041538" alt="" aria-hidden="true" loading="lazy"></div>'
 + '  <div class="container">'
 + '    <div>'
 + '      <p class="section-tag" style="color:rgba(255,255,255,.6)">CONTACT</p>'
