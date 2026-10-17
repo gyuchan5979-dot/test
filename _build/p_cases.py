@@ -8,6 +8,9 @@ STORIES = {
     "02": dict(
         about="커튼이 없던 거실 창에 그레이 겉커튼과 화이트 쉬폰을 이중 레일로 시공했습니다. 시공 전후 사진을 나란히 보면 같은 창이 얼마나 달라지는지 확인할 수 있어요.",
         point=["그레이 겉커튼으로 밝은 바닥 · 가구와 대비되는 차분한 톤", "쉬폰을 함께 걸어 낮에도 시선은 가리고 빛은 들이게", "창 양옆 벽까지 넉넉하게 덮는 폭"]),
+    "39": dict(
+        about="목동 범신하이빌 집 전체를 화이트 톤 하나로 맞춰 시공했습니다. 같은 화이트여도 공간마다 제품은 다르게 골랐어요. 거실은 알루미늄 블라인드로 넓은 통창을 깔끔하고 관리 쉽게, 방 두 곳은 화이트 우드블라인드로 따뜻한 질감을 더해 포근하게, 세탁실 쪽 방은 아이스화이트 콤비블라인드로 빛은 은은하게 들이고 시선은 가리게 했습니다. 색은 하나로 맞추고 제품은 공간에 맞게, 그래서 어느 문을 열어도 하나로 이어지는 집이 됐어요.",
+        point=["집 전체를 화이트 한 가지 톤으로 통일", "거실 통창은 관리 쉬운 알루미늄, 방은 질감 있는 우드", "세탁실 쪽 방은 콤비로 채광과 시선 차단을 함께"]),
     "38": dict(
         about="성남 수내동 빌라의 방 두 곳에 데님블루 암막커튼을 시공했습니다. 두 방 모두 샷시 사이즈에 딱 맞춰 맞춤 제작하고, 창틀 라인에 정확히 떨어지게 재단해 빛샘은 줄이고 보기에도 군더더기 없게 마감했어요. 흔한 무채색 대신 진한 데님블루로 은은한 색감을 더해, 암막이라 빛은 잡아 주면서도 하얀 방에 차분한 포인트가 됩니다.",
         point=["샷시 사이즈에 맞춘 맞춤 제작 · 창틀 라인에 맞춘 기장", "천장 몰딩 바로 아래 레일로 위쪽 빛샘 줄이기", "무채색 대신 데님블루로 하얀 방에 포인트"]),
@@ -212,7 +215,7 @@ def build():
             parts = c["loc"].split()
             if len(parts) == 2: parts = [parts[0], parts[0], parts[1]]
             city = parts[0]; sub = parts[1]; apt = " ".join(parts[2:])
-            t = f'{city} {tag0}커튼 시공 | {sub + " " if sub != city else ""}{apt} {c["place"].replace(" · ", "·")} {c["products"].split(" (")[0]} | 결앤빛' if c["cat"].startswith("curtain") else f'{city} {c["tag"]} 시공 | {sub} {apt} {c["place"].replace(" · ", "·")} | 결앤빛'
+            t = f'{city} {tag0}커튼 시공 | {sub + " " if sub != city else ""}{apt} {c["place"].replace(" · ", "·")} {c["products"].split(" (")[0]} | 결앤빛' if c["cat"].startswith("curtain") else f'{city} {c["tag"]} 시공 | {sub + " " if sub != city else ""}{apt} {c["place"].replace(" · ", "·")} | 결앤빛'
             d = f'{c["loc"]} {c["place"]} {c["products"]} 실제 시공 사례 ({c.get("date","")}). {s["about"][:60]}…'
             kw = (f'{city} 커튼, {sub} 커튼, {apt} 커튼, {city} {tag0}커튼, {c["place"].split()[0]} {tag0}커튼, {", ".join(c["products"].split(" (")[0].split(" + "))}, {city} 블라인드'
                   if c["cat"].startswith("curtain") else
@@ -222,6 +225,7 @@ def build():
             d = f'{c["place"]} {c["products"]} 실제 시공 사례. {s["about"][:70]}…'
             kw = f'{c["place"]} {tag0}, {tag0} 시공, {tag0} 시공사례, {c["place"]} 커튼, {c["place"]} 블라인드, 커튼 시공사례'
         if c.get("kw_extra"): kw += ", " + c["kw_extra"]
+        if c.get("kw"): kw = c["kw"]
         kw = ", ".join(dict.fromkeys(k.strip() for k in kw.split(",")))
         page(f'case-{c["id"]}.html', t, d, kw,
              body, og_image=f'images/cases/case-{c["id"]}.jpg', og_type="article", ld=ld)
