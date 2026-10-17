@@ -132,6 +132,10 @@ CASES = [
     dict(id="33", cat="curtain", tag="암막 커튼", place="상가 공간", title="도심 창가의 그레이 암막 커튼", products="그레이 암막 커튼", photos=["창가 디테일"]),
     dict(id="34", cat="blind commercial", tag="롤스크린", place="사무실", title="사무실 창 그레이 롤스크린", products="그레이 롤스크린", photos=["시공 후"]),
     dict(id="35", cat="curtain", tag="커튼", place="서재", title="책장이 있는 서재의 그레이 커튼", products="그레이 커튼", photos=["시공 후 서재"]),
+    dict(id="36", cat="curtain", tag="암막 커튼", place="침실 2곳", area="성동",
+         loc="성동구 강변건영아파트", date="2026년 10월",
+         title="빛 때문에 잠을 설치던 침실 두 곳, 그레이 샤넬 암막커튼으로",
+         products="그레이 샤넬 암막커튼", photos=["침실 1 시공 후", "불을 끄고 커튼을 닫은 모습", "침실 2 시공 후", "시공 전 (침실 1)"]),
 
 ]
 
