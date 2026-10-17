@@ -46,7 +46,7 @@ jobs:
             cls -1 index.html;
             mirror --reverse --verbose=1 --parallel=4 \
               --exclude-glob .git* --exclude .git/ --exclude .github/ \
-              --exclude _blog/ --exclude-glob README.md \
+              --exclude _blog/ --exclude _insta/ --exclude-glob README.md \
               ./ ./;
             quit
           "
