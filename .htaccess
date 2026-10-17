@@ -12,6 +12,17 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://gyeolnbit.co.kr%{REQUEST_URI} [L,R=301]
 
+# 관리용 파일은 외부에서 열리지 않게 (자동 배포 기록 파일 포함)
+<FilesMatch "(\.(md|py)|\.ftp-deploy-sync-state\.json)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
 # 텍스트 파일 압축 (페이지 로딩 속도 향상)
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml text/xml application/xml

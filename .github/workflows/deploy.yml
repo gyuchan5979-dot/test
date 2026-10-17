@@ -1,0 +1,36 @@
+# 결앤빛 홈페이지 자동 배포
+# 이 브랜치에 저장(push)되면 카페24 FTP의 www 폴더로 바뀐 파일만 올립니다.
+# FTP 정보는 GitHub 저장소 Settings → Secrets and variables → Actions 에 저장된 값을 사용합니다.
+name: Deploy to Cafe24
+
+on:
+  push:
+    branches: [claude/cloud-session-usage-bm46s9]
+  workflow_dispatch:   # Actions 탭에서 수동 실행도 가능
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload to Cafe24 (www)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          server-dir: /www/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            _blog/**
+            README.md
