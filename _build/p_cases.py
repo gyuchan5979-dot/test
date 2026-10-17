@@ -8,6 +8,9 @@ STORIES = {
     "02": dict(
         about="커튼이 없던 거실 창에 그레이 겉커튼과 화이트 쉬폰을 이중 레일로 시공했습니다. 시공 전후 사진을 나란히 보면 같은 창이 얼마나 달라지는지 확인할 수 있어요.",
         point=["그레이 겉커튼으로 밝은 바닥 · 가구와 대비되는 차분한 톤", "쉬폰을 함께 걸어 낮에도 시선은 가리고 빛은 들이게", "창 양옆 벽까지 넉넉하게 덮는 폭"]),
+    "37": dict(
+        about="분당 매화마을 주공3단지 거실과 안방을 공간마다 다르게 시공했습니다. 거실은 하얀 도톰쉬폰으로 햇살은 화사하게 들이면서, 도톰한 원단이라 밖에서의 시선은 가려 줍니다. 안방은 샤넬 암막커튼 한 장으로 복도 쪽 시선을 자연스럽게 가리고 포근한 수면 공간으로 만들었어요. 같은 집이어도 공간마다 쓰임이 다르니, 거기에 맞춰 원단도 방식도 다르게 골랐습니다.",
+        point=["거실 간접조명 라인 안쪽에 레일을 숨겨 조명과 커튼이 함께 떨어지게", "도톰쉬폰으로 낮에도 바깥 시선 차단 · 채광은 그대로", "안방은 창보다 넓게 덮는 암막 한 장으로 복도 쪽 시선까지"]),
     "36": dict(
         about="성동구 강변건영아파트 침실 두 곳에 그레이 샤넬 암막커튼을 시공했습니다. 창으로 들어오는 빛 때문에 잠을 설치신다는 고객님 이야기를 듣고, 두 방 모두 '잘 쉬는 공간'을 만드는 데 집중했어요. 빛을 확실히 잡아 아침에도 어둡고 아늑하게, 차분한 톤으로 방에 들어서면 마음이 가라앉는 분위기로 맞췄습니다. 샤넬 원단 특유의 은은한 결 덕분에 단색인데도 밋밋하지 않아요.",
         point=["침실 두 곳 모두 같은 원단 · 톤으로 통일", "벽 끝에서 끝까지 덮는 폭으로 창 양옆 빛샘 줄이기", "천장 몰딩 바로 아래 레일로 위쪽 빛샘 줄이기"]),
@@ -206,15 +209,16 @@ def build():
             parts = c["loc"].split()
             if len(parts) == 2: parts = [parts[0], parts[0], parts[1]]
             city = parts[0]; sub = parts[1]; apt = " ".join(parts[2:])
-            t = f'{city} {tag0}커튼 시공 | {apt} {c["place"]} {c["products"].split(" (")[0]} | 결앤빛' if c["cat"].startswith("curtain") else f'{city} {c["tag"]} 시공 | {sub} {apt} {c["place"].replace(" · ", "·")} | 결앤빛'
+            t = f'{city} {tag0}커튼 시공 | {sub + " " if sub != city else ""}{apt} {c["place"].replace(" · ", "·")} {c["products"].split(" (")[0]} | 결앤빛' if c["cat"].startswith("curtain") else f'{city} {c["tag"]} 시공 | {sub} {apt} {c["place"].replace(" · ", "·")} | 결앤빛'
             d = f'{c["loc"]} {c["place"]} {c["products"]} 실제 시공 사례 ({c.get("date","")}). {s["about"][:60]}…'
-            kw = (f'{city} 커튼, {sub} 커튼, {apt} 커튼, {city} {tag0}커튼, {c["place"].split()[0]} {tag0}커튼, {c["products"].split(" (")[0]}, {city} 블라인드'
+            kw = (f'{city} 커튼, {sub} 커튼, {apt} 커튼, {city} {tag0}커튼, {c["place"].split()[0]} {tag0}커튼, {", ".join(c["products"].split(" (")[0].split(" + "))}, {city} 블라인드'
                   if c["cat"].startswith("curtain") else
                   f'{city} 블라인드, {sub} 블라인드, {apt} 블라인드, {city} {c["tag"]}, {c["tag"]} 시공, 거실 {c["tag"]}, 베란다 블라인드, {city} 블라인드 시공')
         else:
             t = f'{c["place"]} {c["tag"]} 시공사례 - {c["title"]} | 결앤빛'
             d = f'{c["place"]} {c["products"]} 실제 시공 사례. {s["about"][:70]}…'
             kw = f'{c["place"]} {tag0}, {tag0} 시공, {tag0} 시공사례, {c["place"]} 커튼, {c["place"]} 블라인드, 커튼 시공사례'
+        if c.get("kw_extra"): kw += ", " + c["kw_extra"]
         kw = ", ".join(dict.fromkeys(k.strip() for k in kw.split(",")))
         page(f'case-{c["id"]}.html', t, d, kw,
              body, og_image=f'images/cases/case-{c["id"]}.jpg', og_type="article", ld=ld)
