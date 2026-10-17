@@ -36,12 +36,15 @@ jobs:
             set cmd:fail-exit yes;
             set ftp:ssl-allow no;
             set ftp:passive-mode on;
-            set net:max-retries 3;
-            set net:timeout 30;
+            set net:max-retries 2;
+            set net:timeout 20;
+            debug -t 3;
             open $FTP_SERVER;
-            echo '--- FTP 접속 위치 ---'; pwd; cls -1;
+            echo '--- FTP 접속 위치 ---'; cls -1;
+            debug off;
             cd www;
             echo '--- 업로드 위치 ---'; pwd;
+            echo 'DIAG ONLY'; quit;
             mirror --reverse --verbose=1 --parallel=4 \
               --exclude-glob .git* --exclude .git/ --exclude .github/ \
               --exclude _blog/ --exclude-glob README.md \
