@@ -33,22 +33,19 @@ jobs:
           umask 077
           printf 'machine %s\nlogin %s\npassword %s\n' "$FTP_SERVER" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
           lftp -e "
-            set cmd:fail-exit yes;
+            set cmd:fail-exit no;
             set ftp:ssl-allow no;
             set ftp:passive-mode on;
-            set net:max-retries 2;
-            set net:timeout 20;
+            set net:max-retries 1;
+            set net:timeout 15;
+            set ftp:use-mlsd no;
             debug -t 3;
             open $FTP_SERVER;
-            echo '--- FTP 접속 위치 ---'; cls -1;
-            debug off;
-            cd www;
-            echo '--- 업로드 위치 ---'; pwd;
-            echo 'DIAG ONLY'; quit;
-            mirror --reverse --verbose=1 --parallel=4 \
-              --exclude-glob .git* --exclude .git/ --exclude .github/ \
-              --exclude _blog/ --exclude-glob README.md \
-              ./ ./;
+            quote PWD;
+            echo '=== nlist (cwd) ==='; cls -1 .;
+            echo '=== nlist / ==='; cls -1 /;
+            echo '=== cd www ==='; cd www; quote PWD; cls -1;
+            echo 'DIAG ONLY';
             quit
           "
           rm -f ~/.netrc
