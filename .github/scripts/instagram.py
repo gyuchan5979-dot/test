@@ -20,8 +20,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-API = "https://graph.facebook.com/v23.0"
-TOKEN = os.environ.get("IG_ACCESS_TOKEN", "")
+TOKEN = os.environ.get("IG_ACCESS_TOKEN", "").strip()
+# 인스타 로그인 방식 토큰(IG...)은 graph.instagram.com, 페이스북 로그인 방식(EAA...)은 graph.facebook.com
+IG_LOGIN = TOKEN.startswith("IG")
+API = "https://graph.instagram.com/v23.0" if IG_LOGIN else "https://graph.facebook.com/v23.0"
 IG_USERNAME = os.environ.get("IG_USERNAME", "").lstrip("@").lower()
 
 
@@ -41,6 +43,9 @@ def call(method, path, **params):
 
 
 def ig_accounts():
+    if IG_LOGIN:
+        me = call("GET", "me", fields="user_id,username")
+        return [{"id": me["user_id"], "username": me["username"]}]
     pages = call("GET", "me/accounts",
                  fields="name,instagram_business_account{id,username}")["data"]
     return [p["instagram_business_account"] for p in pages
