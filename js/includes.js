@@ -184,7 +184,7 @@ var footerHTML = ''
 /* ===== 하단 상담 섹션 (푸터 위, <div id="site-cta"></div> 자리에 들어감) ===== */
 var ctaHTML = ''
 + '<section class="contact-cta" id="contact">'
-+ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610200948" alt="" aria-hidden="true" loading="lazy"></div>'
++ '  <div class="bg"><img src="images/hero/hero-cta.jpg?v=202610200948" alt="결앤빛 커튼 블라인드 실제 시공 현장" aria-hidden="true" loading="lazy"></div>'
 + '  <div class="container">'
 + '    <div>'
 + '      <p class="section-tag" style="color:rgba(255,255,255,.6)">CONTACT</p>'
@@ -242,8 +242,10 @@ var floatingHTML = ''
     var cfg = PAGE_HEROES[hero.getAttribute("data-hero")];
     if (!cfg) return;
     var img = hero.getAttribute("data-hero-img") || cfg.img;   // 페이지별 사진 지정 가능
+    var heroH1 = hero.querySelector("h1");
+    var heroAlt = (heroH1 ? heroH1.textContent.replace(/\s+/g, " ").trim() + " - " : "") + "결앤빛 실제 시공 사진";
     hero.insertAdjacentHTML("afterbegin",
-      '<div class="page-hero-bg"><img src="' + img + '" alt="" aria-hidden="true"></div><div class="page-hero-scrim"></div>');
+      '<div class="page-hero-bg"><img src="' + img + '" alt="' + heroAlt.replace(/"/g, "&quot;") + '" aria-hidden="true"></div><div class="page-hero-scrim"></div>');
 
     var inner = hero.querySelector(".container") || hero;
     var h1 = inner.querySelector("h1");
