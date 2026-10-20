@@ -7,7 +7,8 @@
 게시물 파일(_insta/*.json) 형식
   {
     "caption": "본문 + 해시태그",
-    "images": ["https://gyeolnbit.co.kr/images/insta/02-xxx/1.jpg", ...]   # 1~10장, JPG
+    "images": ["https://raw.githubusercontent.com/gyuchan5979-dot/test/claude/cloud-session-usage-bm46s9/images/insta/02-xxx/1.jpg", ...]   # 1~10장, JPG
+    (카페24는 메타 수집기를 봇으로 차단해서, 사진은 GitHub raw 주소로 넣습니다)
   }
 
 토큰은 GitHub Secrets 의 IG_ACCESS_TOKEN 에서만 읽습니다.
