@@ -64,7 +64,7 @@ def pick_account():
 
 
 def wait_ready(container_id):
-    for _ in range(30):
+    for _ in range(60):
         status = call("GET", container_id, fields="status_code")["status_code"]
         if status == "FINISHED":
             return
@@ -80,12 +80,16 @@ def check():
     print(f"게시 대상: @{pick_account()['username']}")
 
 
+def is_video(url):
+    return url.lower().split("?")[0].endswith((".mp4", ".mov"))
+
+
 def post(path):
     with open(path, encoding="utf-8") as f:
         item = json.load(f)
     images, caption = item["images"], item["caption"]
     if not 1 <= len(images) <= 10:
-        sys.exit("사진은 1~10장이어야 합니다.")
+        sys.exit("사진 · 영상은 1~10개여야 합니다.")
     for url in images:
         with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=30) as r:
             if r.status != 200:
@@ -94,11 +98,17 @@ def post(path):
     account = pick_account()
     uid = account["id"]
     if len(images) == 1:
-        container = call("POST", f"{uid}/media", image_url=images[0], caption=caption)["id"]
+        if is_video(images[0]):
+            container = call("POST", f"{uid}/media", media_type="REELS", video_url=images[0], caption=caption)["id"]
+        else:
+            container = call("POST", f"{uid}/media", image_url=images[0], caption=caption)["id"]
     else:
         children = []
         for url in images:
-            cid = call("POST", f"{uid}/media", image_url=url, is_carousel_item="true")["id"]
+            if is_video(url):
+                cid = call("POST", f"{uid}/media", media_type="VIDEO", video_url=url, is_carousel_item="true")["id"]
+            else:
+                cid = call("POST", f"{uid}/media", image_url=url, is_carousel_item="true")["id"]
             wait_ready(cid)
             children.append(cid)
         container = call("POST", f"{uid}/media", media_type="CAROUSEL",
