@@ -1,5 +1,5 @@
 # 드리움 인스타그램 게시
-# 자동으로 올라가지 않고, 사장님 확인 후 수동 실행할 때만 게시됩니다.
+# push로는 자동 실행되지 않고, Run workflow(수동 실행)로만 게시됩니다.
 #   Actions 탭 → Instagram → Run workflow
 #   - check  : 토큰과 연결된 계정만 확인 (게시 안 함)
 #   - post   : _insta 폴더의 게시물 파일 1개를 게시
