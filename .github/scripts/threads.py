@@ -1,6 +1,7 @@
 """드리움 스레드 게시 (Threads API).
 
   python3 threads.py check          토큰과 연결된 스레드 계정 확인 (게시 안 함)
+  python3 threads.py next           _insta/threads/posts 에서 아직 안 올린 첫 글 게시 (매일 자동 실행용)
   python3 threads.py post FILE      FILE(json: {"text": "...", "images": ["https://..."]}) 게시
                                     images 0장 = 글만, 1장 = 사진 1장, 2장 이상 = 여러 장 묶음
 
@@ -46,6 +47,20 @@ def wait_ready(cid):
     sys.exit("사진 처리가 너무 오래 걸려요")
 
 
+def refresh():
+    """60일 토큰 연장 (발급 24시간 이후부터 가능). 실패해도 게시는 계속."""
+    url = "https://graph.threads.com/refresh_access_token?" + urllib.parse.urlencode(
+        {"grant_type": "th_refresh_token", "access_token": TOKEN})
+    try:
+        with urllib.request.urlopen(url, timeout=60) as r:
+            d = json.load(r)
+        days = int(d.get("expires_in", 0)) // 86400
+        same = d.get("access_token") == TOKEN
+        print(f"토큰 연장: 앞으로 약 {days}일 유효" + ("" if same else " (새 토큰이 발급됨 — 기존 토큰도 만료 전까지 사용 가능)"))
+    except Exception as e:
+        print(f"토큰 연장은 건너뜀 ({type(e).__name__})")
+
+
 def main():
     if not TOKEN:
         sys.exit("THREADS_ACCESS_TOKEN 이 등록되지 않았어요 (Settings → Secrets → Actions)")
@@ -53,9 +68,21 @@ def main():
     me = call("GET", "me", fields="id,username")
     UID = me["id"]
     print(f"연결된 스레드 계정: @{me.get('username')}")
+    refresh()
     if sys.argv[1] == "check":
         return
-    post = json.load(open(sys.argv[2], encoding="utf-8"))
+    path = sys.argv[2] if sys.argv[1] == "post" else None
+    if sys.argv[1] == "next":
+        import glob
+        for f in sorted(glob.glob("_insta/threads/posts/*.json")):
+            if not json.load(open(f, encoding="utf-8")).get("posted"):
+                path = f
+                break
+        if not path:
+            print("올릴 글이 없어요 (대기열이 비었어요)")
+            return
+    print(f"게시할 글: {path}")
+    post = json.load(open(path, encoding="utf-8"))
     if post.get("posted"):
         sys.exit("이미 게시된 글이에요 (posted: true)")
     text, imgs = post.get("text", ""), post.get("images", [])
@@ -74,6 +101,11 @@ def main():
     wait_ready(cid)
     res = call("POST", f"{UID}/threads_publish", creation_id=cid)
     print(f"게시 완료: media id {res.get('id')}")
+    post["posted"] = True
+    post["posted_at"] = time.strftime("%Y-%m-%d %H:%M", time.gmtime(time.time() + 9 * 3600))
+    post["media_id"] = res.get("id")
+    with open(path, "w", encoding="utf-8") as fp:
+        json.dump(post, fp, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
