@@ -7,6 +7,9 @@
 name: Instagram
 
 on:
+  # 매주 월요일 오전 9시 37분(한국) 토큰 확인 + 연장 (게시 안 함). 끊기면 실패 알림 메일이 와요
+  schedule:
+    - cron: "37 0 * * 1"
   workflow_dispatch:
     inputs:
       mode:
@@ -35,7 +38,7 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USERNAME: ${{ vars.IG_USERNAME }}
-          MODE: ${{ inputs.mode }}
+          MODE: ${{ inputs.mode || 'check' }}
           FILE: ${{ inputs.file }}
         run: |
           if [ "$MODE" = post ]; then

@@ -119,9 +119,24 @@ def post(path):
     print(f"@{account['username']} 게시 완료: {link}")
 
 
+def refresh():
+    """인스타 로그인 방식 장기 토큰 60일 연장 (발급 24시간 이후부터 가능). 실패해도 계속."""
+    if not IG_LOGIN:
+        return
+    url = "https://graph.instagram.com/refresh_access_token?" + urllib.parse.urlencode(
+        {"grant_type": "ig_refresh_token", "access_token": TOKEN})
+    try:
+        with urllib.request.urlopen(url, timeout=60) as r:
+            d = json.load(r)
+        print(f"토큰 연장: 앞으로 약 {int(d.get('expires_in', 0)) // 86400}일 유효")
+    except Exception as e:
+        print(f"토큰 연장은 건너뜀 ({type(e).__name__})")
+
+
 if __name__ == "__main__":
     if not TOKEN:
         sys.exit("IG_ACCESS_TOKEN 이 등록되지 않았습니다 (GitHub Secrets).")
+    refresh()
     if sys.argv[1:2] == ["check"]:
         check()
     elif sys.argv[1:2] == ["post"] and len(sys.argv) == 3:
