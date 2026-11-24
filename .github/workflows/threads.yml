@@ -1,0 +1,44 @@
+# 드리움 스레드(Threads) 게시
+# push로는 자동 실행되지 않고, Run workflow(수동 실행)로만 게시됩니다.
+#   Actions 탭 → Threads → Run workflow
+#   - check  : 토큰과 연결된 계정만 확인 (게시 안 함)
+#   - post   : _insta/threads/posts 폴더의 글 파일 1개를 게시
+# 토큰은 Settings → Secrets and variables → Actions 의 THREADS_ACCESS_TOKEN 사용
+name: Threads
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "check 또는 post"
+        required: true
+        default: check
+        type: choice
+        options: [check, post]
+      file:
+        description: "post 일 때 글 파일 (예: _insta/threads/posts/01.json)"
+        required: false
+        default: ""
+
+concurrency:
+  group: threads
+  cancel-in-progress: false
+
+jobs:
+  threads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          MODE: ${{ inputs.mode }}
+          FILE: ${{ inputs.file }}
+        run: |
+          if [ "$MODE" = post ]; then
+            python3 .github/scripts/threads.py post "$FILE"
+          else
+            python3 .github/scripts/threads.py check
+          fi
