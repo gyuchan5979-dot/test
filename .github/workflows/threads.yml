@@ -42,6 +42,7 @@ jobs:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           MODE: ${{ inputs.mode || 'next' }}
           FILE: ${{ inputs.file }}
+          SCHEDULED: ${{ github.event_name == 'schedule' && '1' || '' }}
         run: |
           if [ "$MODE" = post ]; then
             python3 .github/scripts/threads.py post "$FILE"

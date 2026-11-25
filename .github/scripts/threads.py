@@ -74,6 +74,12 @@ def main():
     path = sys.argv[2] if sys.argv[1] == "post" else None
     if sys.argv[1] == "next":
         import glob
+        today = time.strftime("%Y-%m-%d", time.gmtime(time.time() + 9 * 3600))
+        if os.environ.get("SCHEDULED") and any(
+                json.load(open(f, encoding="utf-8")).get("posted_at", "").startswith(today)
+                for f in glob.glob("_insta/threads/posts/*.json")):
+            print("오늘은 이미 한 개 올라가서 건너뜀")
+            return
         for f in sorted(glob.glob("_insta/threads/posts/*.json")):
             if not json.load(open(f, encoding="utf-8")).get("posted"):
                 path = f
