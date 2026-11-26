@@ -75,6 +75,10 @@ def main():
     if sys.argv[1] == "next":
         import glob
         today = time.strftime("%Y-%m-%d", time.gmtime(time.time() + 9 * 3600))
+        hour = int(time.strftime("%H", time.gmtime(time.time() + 9 * 3600)))
+        if os.environ.get("SCHEDULED") and hour < 19:
+            print(f"예약 실행이 늦게 돌아서(한국 {hour}시) 건너뜀 — 저녁 7시~자정에만 올림")
+            return
         if os.environ.get("SCHEDULED") and any(
                 json.load(open(f, encoding="utf-8")).get("posted_at", "").startswith(today)
                 for f in glob.glob("_insta/threads/posts/*.json")):

@@ -1,5 +1,5 @@
 # 드리움 스레드(Threads) 게시
-#   - 매일 저녁 7시 47분(한국 시간)에 _insta/threads/posts 대기열에서 다음 글 1개 자동 게시
+#   - 매일 저녁 7시~11시(한국 시간) 사이에 _insta/threads/posts 대기열에서 다음 글 1개 자동 게시
 #   - Actions 탭 → Threads → Run workflow 로 수동 실행도 가능
 #       check : 토큰과 연결된 계정만 확인 (게시 안 함)
 #       next  : 대기열의 다음 글 1개 게시
@@ -9,7 +9,9 @@ name: Threads
 
 on:
   schedule:
-    - cron: "47 10 * * *"   # UTC 10:47 = 한국 19:47
+    # GitHub 예약 실행은 몇 시간씩 밀리기도 해서 저녁 7시~11시 사이 여러 번 시도
+    # (하루 1개만 올라가고, 한국 저녁 7시~자정 사이에만 게시)
+    - cron: "17,47 10-14 * * *"   # UTC 10~14시 = 한국 19~23시
   workflow_dispatch:
     inputs:
       mode:
