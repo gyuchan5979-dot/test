@@ -7,7 +7,7 @@
 
 토큰: THREADS_ACCESS_TOKEN (GitHub Secrets). 값은 로그에 출력하지 않음.
 """
-import json, os, sys, time, urllib.parse, urllib.request, urllib.error
+import json, os, re, sys, time, urllib.parse, urllib.request, urllib.error
 
 API = "https://graph.threads.com/v1.0"
 TOKEN = os.environ.get("THREADS_ACCESS_TOKEN", "").strip()
@@ -96,17 +96,24 @@ def main():
     if post.get("posted"):
         sys.exit("이미 게시된 글이에요 (posted: true)")
     text, imgs = post.get("text", ""), post.get("images", [])
+    # 스레드는 글 하나에 주제 태그 1개만 붙음 → 마지막 줄 #태그를 topic_tag 로 보냄
+    topic = post.get("topic", "")
+    m = re.search(r"\n\s*#(\S+)\s*$", text)
+    if m:
+        topic = topic or m.group(1)
+        text = text[:m.start()].rstrip()
+    extra = {"topic_tag": topic} if topic else {}
     if len(text) > 500:
         sys.exit(f"글이 500자를 넘어요 ({len(text)}자)")
     if not imgs:
-        cid = container(media_type="TEXT", text=text)
+        cid = container(media_type="TEXT", text=text, **extra)
     elif len(imgs) == 1:
-        cid = container(media_type="IMAGE", image_url=imgs[0], text=text)
+        cid = container(media_type="IMAGE", image_url=imgs[0], text=text, **extra)
     else:
         kids = [container(media_type="IMAGE", image_url=u, is_carousel_item="true") for u in imgs[:20]]
         for k in kids:
             wait_ready(k)
-        cid = container(media_type="CAROUSEL", children=",".join(kids), text=text)
+        cid = container(media_type="CAROUSEL", children=",".join(kids), text=text, **extra)
     time.sleep(30)  # Meta 안내: 게시 전 약 30초 대기
     wait_ready(cid)
     res = call("POST", f"{UID}/threads_publish", creation_id=cid)
